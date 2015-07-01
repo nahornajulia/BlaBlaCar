@@ -1,15 +1,36 @@
 package com.intropro.courses.jnahorna.blablacar;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 
 import org.apache.log4j.Logger;
+
+import com.intropro.courses.jnahorna.blablacar.persist.Persister;
 
 public class RideList {
 	
 	private static Logger LOG =  Logger.getLogger(RideList.class);
 
-	private List<Ride> rides = new ArrayList<Ride>();
+	private Persister pers;
+	
+	//private List<Ride> rides = new ArrayList<Ride>();
 
+	public RideList(){
+		pers = Persister.getPersister(); 
+	}
+	private void addRideToDB(Ride r){
+		try {
+			PreparedStatement preparedStatement = pers.getConnection().prepareStatement("INSERT INTO rides (start, finish) VALUES (?, ?)");
+		    preparedStatement.setString(1, r.getStart());
+		    preparedStatement.setString(2, r.getFinish());
+		    int res = preparedStatement.executeUpdate();
+		    // TODO add all fields of RIDE class
+		} catch (SQLException e) {
+			// TODO logger
+		}
+	}
+	
 	public Ride createRide(String start, String finish, Date dateTime,
 			Profile owner) {
 		Ride ride = null;
@@ -18,7 +39,9 @@ public class RideList {
 			throw new BlaCarDomainObjExistsExc("Failed to create new ride: Ride already exist");
 		}
 		ride = Ride.createRide(start, finish, dateTime, owner);
-		rides.add(ride); } catch (BlaCarDomainObjExistsExc ex) {
+		//rides.add(ride);
+		addRideToDB(ride);
+		} catch (BlaCarDomainObjExistsExc ex) {
 			LOG.debug("Cannot create ride: " + ex.getMessage(), ex);
 			LOG.error("Cannot create ride: " + ex.getMessage());
 			}

@@ -3,7 +3,6 @@ package com.intropro.courses.jnahorna.blablacar;
 import static org.junit.Assert.*;
 
 import java.util.*;
-
 import org.junit.Test;
 
 public class MessageListTest {
@@ -21,7 +20,7 @@ public class MessageListTest {
 		assertEquals(body, message.getBody());
 		assertEquals("Test1", message.getFrom().getFirstName());
 		assertEquals("Test2", message.getTo().getFirstName());
-		Date dateMessage = new Date();
+		Data dateMessage = new Date();
 		assertEquals(dateMessage, message.getDateTime());
 		
 	}
