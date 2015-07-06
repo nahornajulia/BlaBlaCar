@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.intropro.courses.jnahorna.blablacar.Message;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Message;
 
 public class MessageTest {
 

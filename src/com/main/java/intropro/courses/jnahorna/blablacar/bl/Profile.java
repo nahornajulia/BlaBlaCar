@@ -1,4 +1,4 @@
-package com.intropro.courses.jnahorna.blablacar;
+package com.main.java.intropro.courses.jnahorna.blablacar.bl;
 
 public class Profile {
 
@@ -6,10 +6,15 @@ public class Profile {
 	private String lastName;
 	private String phone;
 	private String email;
-
+    private int id;
 	//Getters and Setters
 	//***************************************************	
-	
+	public int getId(){
+		return id;
+	}
+    public void setId(int id){
+    	this.id=id;
+    }
 	public String getFirstName() {
 		return firstName;
 	}

@@ -7,7 +7,10 @@ import java.util.*;
 import org.apache.log4j.Logger;
 import org.junit.*;
 
-import com.intropro.courses.jnahorna.blablacar.RideList;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Profile;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Ride;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.RideList;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.SearchParameters;
 
 public class RideListTest {
 	

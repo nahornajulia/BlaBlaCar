@@ -7,7 +7,11 @@ import java.util.*;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import com.intropro.courses.jnahorna.blablacar.Request;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.BlaCarDomainObjExistsExc;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Profile;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Request;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Ride;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.RideList;
 
 public class RequestTest {
 

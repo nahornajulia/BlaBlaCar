@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.intropro.courses.jnahorna.blablacar.Comment;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Comment;
 
 public class CommentTest {
 

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.intropro.courses.jnahorna.blablacar.Profile;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Profile;
 
 public class ProfileTest {
 

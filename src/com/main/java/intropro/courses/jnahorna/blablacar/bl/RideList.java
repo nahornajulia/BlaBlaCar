@@ -1,4 +1,4 @@
-package com.intropro.courses.jnahorna.blablacar;
+package com.main.java.intropro.courses.jnahorna.blablacar.bl;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -6,48 +6,52 @@ import java.util.*;
 
 import org.apache.log4j.Logger;
 
-import com.intropro.courses.jnahorna.blablacar.persist.Persister;
+import com.intropro.courses.jnahorna.blablacar.dao.ConnectorDAO;
 
 public class RideList {
-	
-	private static Logger LOG =  Logger.getLogger(RideList.class);
 
-	private Persister pers;
-	
-	//private List<Ride> rides = new ArrayList<Ride>();
+	private static Logger log = Logger.getLogger(RideList.class);
 
-	public RideList(){
-		pers = Persister.getPersister(); 
+	private ConnectorDAO pers;
+
+	// private List<Ride> rides = new ArrayList<Ride>();
+
+	public RideList() {
+		pers = ConnectorDAO.getPersister();
 	}
-	private void addRideToDB(Ride r){
+
+	private void addRideToDB(Ride r) {
 		try {
-			PreparedStatement preparedStatement = pers.getConnection().prepareStatement("INSERT INTO rides (start, finish) VALUES (?, ?)");
-		    preparedStatement.setString(1, r.getStart());
-		    preparedStatement.setString(2, r.getFinish());
-		    int res = preparedStatement.executeUpdate();
-		    // TODO add all fields of RIDE class
+			PreparedStatement preparedStatement = pers.getConnection().prepareStatement("INSERT INTO rides (start, finish, dateTime, owner, status) VALUES (?, ?, ?, ?, ?)");
+			preparedStatement.setString(1, r.getStart());
+			preparedStatement.setString(2, r.getFinish());
+			preparedStatement.setDate(3, new java.sql.Date(r.getDateTime().getTime()));
+			preparedStatement.setProfile(4, r.getOwner());
+			preparedStatement.setString(5, r.getStatus());
+
+			int res = preparedStatement.executeUpdate();
+
 		} catch (SQLException e) {
-			// TODO logger
+			Logger.getLogger(this.getClass()).error("failed to prepare statement", e);
 		}
 	}
-	
-	public Ride createRide(String start, String finish, Date dateTime,
-			Profile owner) {
+
+	public Ride createRide(String start, String finish, Date dateTime,Profile owner) {
 		Ride ride = null;
-		try{
-		if (search(start, finish, dateTime, owner).size() != 0) {
-			throw new BlaCarDomainObjExistsExc("Failed to create new ride: Ride already exist");
-		}
-		ride = Ride.createRide(start, finish, dateTime, owner);
-		//rides.add(ride);
-		addRideToDB(ride);
-		} catch (BlaCarDomainObjExistsExc ex) {
-			LOG.debug("Cannot create ride: " + ex.getMessage(), ex);
-			LOG.error("Cannot create ride: " + ex.getMessage());
+		try {
+			if (search(start, finish, dateTime, owner).size() != 0) {
+				throw new BlaCarDomainObjExistsExc("Failed to create new ride: Ride already exist");
 			}
+			ride = Ride.createRide(start, finish, dateTime, owner);
+			// rides.add(ride);
+			addRideToDB(ride);
+		} catch (BlaCarDomainObjExistsExc ex) {
+			log.debug("Cannot create ride: " + ex.getMessage());
+			log.error("Cannot create ride: " + ex.getMessage());
+		}
 		return ride;
 	}
-	
+
 	public List<Ride> search(String start, String finish, Date dateTime,
 			Profile owner) {
 		List<Ride> ridesFound = new ArrayList<Ride>();
@@ -117,8 +121,7 @@ public class RideList {
 	public List<Ride> search(Map searchParameters) {
 		boolean firstRide = true;
 		List<Ride> ridesFound = new ArrayList<Ride>();
-		
-		
+
 		for (Object key : searchParameters.keySet()) {
 			if (key.equals(SearchParameters.start.toString())) {
 				for (Ride ride : rides) {

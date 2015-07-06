@@ -1,4 +1,4 @@
-package com.intropro.courses.jnahorna.blablacar;
+package com.main.java.intropro.courses.jnahorna.blablacar.bl;
 
 import java.util.*;
 
@@ -34,8 +34,7 @@ public class Ride {
 		Request request = null;
 		try {
 			request = getRequest(owner);
-			Logger.getLogger(this.getClass()).warn(
-					"we didn't create a request instead we used existing one");
+			Logger.getLogger(this.getClass()).warn("we didn't create a request instead we used existing one");
 		} catch (BlaCarDomainObjNotExistExc e) {
 			request = new Request();
 			request.setOwner(owner);

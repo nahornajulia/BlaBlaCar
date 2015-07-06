@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import java.util.*;
 import org.junit.Test;
 
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Message;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.MessageList;
+import com.main.java.intropro.courses.jnahorna.blablacar.bl.Profile;
+
 public class MessageListTest {
 	
 	@Test
@@ -20,7 +24,7 @@ public class MessageListTest {
 		assertEquals(body, message.getBody());
 		assertEquals("Test1", message.getFrom().getFirstName());
 		assertEquals("Test2", message.getTo().getFirstName());
-		Data dateMessage = new Date();
+		Date dateMessage = new Date();
 		assertEquals(dateMessage, message.getDateTime());
 		
 	}
