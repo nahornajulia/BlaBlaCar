@@ -2,11 +2,12 @@ package com.main.java.intropro.courses.jnahorna.blablacar.bl;
 
 public class Profile {
 
-	private String firstName;
-	private String lastName;
-	private String phone;
+	private String first_name;
+	private String last_name;
+	private String phone_number;
 	private String email;
     private int id;
+    
 	//Getters and Setters
 	//***************************************************	
 	public int getId(){
@@ -16,27 +17,27 @@ public class Profile {
     	this.id=id;
     }
 	public String getFirstName() {
-		return firstName;
+		return first_name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String first_name) {
+		this.first_name = first_name;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return last_name;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String last_name) {
+		this.last_name = last_name;
 	}
 
 	public String getPhone() {
-		return phone;
+		return phone_number;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone(String phone_number) {
+		this.phone_number = phone_number;
 	}
 
 	public String getEmail() {
@@ -55,10 +56,10 @@ public class Profile {
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
+				+ ((first_name == null) ? 0 : first_name.hashCode());
 		result = prime * result
-				+ ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
+				+ ((last_name == null) ? 0 : last_name.hashCode());
+		result = prime * result + ((phone_number == null) ? 0 : phone_number.hashCode());
 		return result;
 	}
 
@@ -76,20 +77,20 @@ public class Profile {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
+		if (first_name == null) {
+			if (other.first_name != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		} else if (!first_name.equals(other.first_name))
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
+		if (last_name == null) {
+			if (other.last_name != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} else if (!last_name.equals(other.last_name))
 			return false;
-		if (phone == null) {
-			if (other.phone != null)
+		if (phone_number == null) {
+			if (other.phone_number != null)
 				return false;
-		} else if (!phone.equals(other.phone))
+		} else if (!phone_number.equals(other.phone_number))
 			return false;
 		return true;
 	}

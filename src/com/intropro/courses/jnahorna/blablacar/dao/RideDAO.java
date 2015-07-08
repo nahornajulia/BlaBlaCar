@@ -2,6 +2,7 @@ package com.intropro.courses.jnahorna.blablacar.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
@@ -15,28 +16,28 @@ public class RideDAO {
 
 	private static Logger log = Logger.getLogger(RideList.class);
 
-	private ConnectorDAO conDAO;
-	private ProfileDAO pDAO;
+	private ConnectorDAO connectorDao;
+	private ProfileDAO profileDao;
 
 	public RideDAO() {
-		conDAO = ConnectorDAO.getPersister();
-		pDAO = new ProfileDAO();
+		connectorDao = ConnectorDAO.getPersister();
+		profileDao = new ProfileDAO();
 	}
 
-	private void addRideToDB(Ride r) {
+	public void storeRideToDB(Ride r) {
 		try {
-			pDAO.addProfileToDB(r.getOwner());
-			PreparedStatement preparedStatement = conDAO.getConnection().prepareStatement("INSERT INTO rides (start, finish, dateTime, owner, status) VALUES (?, ?, ?, ?, ?)");
-			preparedStatement.setString(1, r.getStart());
-			preparedStatement.setString(2, r.getFinish());
-			preparedStatement.setDate(3, new java.sql.Date(r.getDateTime().getTime()));
-			preparedStatement.setInt(4, r.getOwner().getId());
-			preparedStatement.setString(5, r.getStatus());
+			//profileDao.storeProfileToDB(r.getOwner());
+			PreparedStatement st = connectorDao.getConnection().prepareStatement("INSERT INTO rides (start, finish status) VALUES (?, ?, ?)");
+			st.setString(1, "18:00");
+			st.setString(2, "18:05");
+			//st.setDate(3, new java.sql.Date(r.getDateTime().getTime()));
+			//st.setInt(4, r.getOwner().getId());
+			st.setString(5, "Active");
 
-			int res = preparedStatement.executeUpdate();
+			int res = st.executeUpdate();
   
 		} catch (SQLException e) {
-			Logger.getLogger(this.getClass()).error("failed to prepare statement", e);
+			log.error("failed to prepare statement", e);
 		}
 	}
 

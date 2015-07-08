@@ -31,15 +31,17 @@ public class ConnectorDAO {
 	
 	private void init(){
 		
-		ResourceBundle resource = ResourceBundle.getBundle("connection");
-		String host = resource.getString("host");
-		String port = resource.getString("port");
-		String database = resource.getString("database");
-		String dbType = resource.getString("dbType");
+//		ResourceBundle resource = ResourceBundle.getBundle("connection");
+//		String host = resource.getString("host");
+//		String port = resource.getString("port");
+//		String database = resource.getString("database");
+//		String dbType = resource.getString("dbType");
 		try {
-		con = DriverManager.getConnection("jdbc:" + dbType + "://" + host + ":" + port + "/" + database + "," +  "jdbc", "jdbc");
+		con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/learndb", "jdbc", "jdbc");
+		System.out.println("DONE!");
 		} catch (SQLException ex) {
 			Logger.getLogger(this.getClass()).error("failed to connect", ex);
+			
 		}
 	}
 	
